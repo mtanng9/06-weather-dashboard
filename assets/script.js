@@ -83,28 +83,36 @@ async function fiveDayWeather(city) {
 
         var container = document.createElement("div")
         container.classList.add("col");
+        container.classList.add("card");
+        container.classList.add("day");
+
 
         
         var day = document.createElement("h2");
+        container.classList.add("card-title");
         day.innerHTML = slot.dt_txt.slice(0,10);
         container.appendChild(day);
 
-        var temp = document.createElement("p");
+        var temp = document.createElement("h3");
+        container.classList.add("card-subtitle");
+        container.classList.add("mb-2");
+        container.classList.add("text-muted");
         temp.innerHTML = "Temp: " + slot.main.temp + "F";
         container.appendChild(temp);
 
 
         var wind = document.createElement("p");
+        container.classList.add("card-text");
         wind.innerHTML = "Wind: " + slot.wind.speed + " MPH";
         container.appendChild(wind);
 
 
         var humidty = document.createElement("p");
+        container.classList.add("card-text");
         humidty.innerHTML = "Humidity: " + slot.main.humidity + "%"; 
         container.appendChild(humidty);
 
         parent.append(container);
-
     }
 
 }

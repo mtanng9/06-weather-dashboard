@@ -1,3 +1,19 @@
 header {
-    
+    height: 50px;
+    justify-content: center;
+    display: flex;
+    font-size: xx-large;
+    font-weight: bold;
+    background-color: antiquewhite;
+    border-style: solid;
+    border-radius: 10px;
+    margin: 15px
+}
+
+#five-day-forecast {
+    margin: 15px;
+}
+
+.day {
+    margin: 5px;
 }
