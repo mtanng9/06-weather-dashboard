@@ -1,3 +1,5 @@
+var searchHistory = []
+
 document.getElementById("search-btn").addEventListener("click", function() {
     // Grab city input on search button click
     var city = document.getElementById("search-city").value;
@@ -6,11 +8,18 @@ document.getElementById("search-btn").addEventListener("click", function() {
     currentWeather(city);
     fiveDayWeather(city);
 
-    // save to local storage
-    localStorage.setItem(city, city);
-
     // display in history list
-    // TODO: figure out how to retrive mutiple cities
+    var searchHistoryDiv = document.getElementById("search-history")
+    if (!searchHistory.includes(city)) {
+        searchHistory.push(city);
+ 
+        var newSearch = document.createElement("p");
+        newSearch.classList.add("search-history-item");
+        newSearch.classList.add("btn");
+        newSearch.classList.add("btn-info");
+        newSearch.innerHTML = city;
+        searchHistoryDiv.append(newSearch);
+    }
 });
 
 
@@ -78,9 +87,9 @@ async function fiveDayWeather(city) {
     }
 
     // date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+    var parent = document.getElementById("five-day-forecast");
+    parent.innerHTML = '5-Day Forecast:';
     for (slot of fiveDayWeatherSlots) {
-        var parent = document.getElementById("five-day-forecast");
-
         var container = document.createElement("div")
         container.classList.add("col");
         container.classList.add("card");

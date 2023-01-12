@@ -17,3 +17,8 @@ header {
 .day {
     margin: 5px;
 }
+
+.search-history-item {
+    display: block;
+    margin: 5px;
+}
