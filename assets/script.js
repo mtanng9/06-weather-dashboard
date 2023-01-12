@@ -33,11 +33,16 @@ async function currentWeather(city) {
 
     // city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the the wind speed
     var cityName = currentWeatherUrlJson.name;
-    var date = dayjs();
+    var date = dayjs().format('YYYY-MM-DD');
     var icon;
     var temp = currentWeatherUrlJson.main.temp;
     var humidity = currentWeatherUrlJson.main.humidity;
     var windspeed = currentWeatherUrlJson.wind.speed;
+
+    document.getElementById("current-city").innerHTML = cityName + " (" + date + ")";
+    document.getElementById("current-temp").innerHTML = "Temp: " + temp + "F";
+    document.getElementById("current-wind").innerHTML = "Wind: " + windspeed + " MPH";
+    document.getElementById("current-humidity").innerHTML = "Humidity: " + humidity + "%";
 }
 
 async function fiveDayWeather(city) {
@@ -53,7 +58,6 @@ async function fiveDayWeather(city) {
     var fiveDayWeatherUrlResponse = await fetch(fiveDayWeatherUrl);
     var fiveDayWeatherUrlResponseJson = await fiveDayWeatherUrlResponse.json();
 
-    // date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
     weatherSlots = fiveDayWeatherUrlResponseJson.list;
     nextFiveDaysUnix = [
         dayjs().add(1,'day').hour(12).minute(00).second(00).format('YYYY-MM-DD HH:mm:ss'),
@@ -72,4 +76,7 @@ async function fiveDayWeather(city) {
             }
         }
     }
+
+    // date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+
 }
