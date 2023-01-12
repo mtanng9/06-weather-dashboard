@@ -17,13 +17,28 @@ document.getElementById("search-btn").addEventListener("click", function() {
 // get weather info
 
 
-function currentWeather(city) {
+async function currentWeather(city) {
     // show current weather of "current" city
-    // city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the the wind speed
     var latLongUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=f54958beffeb4349ae2a5307de77a8a2";
-    fetch(latLongUrl)
-        .then(function(response){return response.json()})
-        .then(function(response){console.log(response)})
+    var latLongUrlResponse = await fetch(latLongUrl);
+    var latLongUrlJson = await latLongUrlResponse.json();
+
+    var lat = latLongUrlJson[0].lat;
+    var lon = latLongUrlJson[0].lon;
+
+    var currentWeatherUrl = "https://api.openweathermap.org/data/2.5/weather?units=imperial&lat=" + lat + "&lon=" + lon + "&appid=f54958beffeb4349ae2a5307de77a8a2";
+    var currentWeatherUrlResponse = await fetch(currentWeatherUrl);
+    var currentWeatherUrlJson = await currentWeatherUrlResponse.json();
+
+    // city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the the wind speed
+    var cityName = currentWeatherUrlJson.name;
+    var date = dayjs();
+    var icon;
+    var temp = currentWeatherUrlJson.main.temp;
+    var humidity = currentWeatherUrlJson.main.humidity;
+    var windspeed = currentWeatherUrlJson.wind.speed;
+
+    debugger;
 }
 
 function fiveDayWeather(city) {
