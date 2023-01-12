@@ -18,14 +18,14 @@ document.getElementById("search-btn").addEventListener("click", function() {
         newSearch.classList.add("btn");
         newSearch.classList.add("btn-info");
         newSearch.innerHTML = city;
+
+        newSearch.addEventListener("click", function() {
+            currentWeather(this.innerHTML);
+            fiveDayWeather(this.innerHTML);
+        });
         searchHistoryDiv.append(newSearch);
     }
 });
-
-
-// grab city on history item click
-// get weather info
-
 
 async function currentWeather(city) {
     // show current weather of "current" city
