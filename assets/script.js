@@ -78,5 +78,33 @@ async function fiveDayWeather(city) {
     }
 
     // date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+    for (slot of fiveDayWeatherSlots) {
+        var parent = document.getElementById("five-day-forecast");
+
+        var container = document.createElement("div")
+        container.classList.add("col");
+
+        
+        var day = document.createElement("h2");
+        day.innerHTML = slot.dt_txt.slice(0,10);
+        container.appendChild(day);
+
+        var temp = document.createElement("p");
+        temp.innerHTML = "Temp: " + slot.main.temp + "F";
+        container.appendChild(temp);
+
+
+        var wind = document.createElement("p");
+        wind.innerHTML = "Wind: " + slot.wind.speed + " MPH";
+        container.appendChild(wind);
+
+
+        var humidty = document.createElement("p");
+        humidty.innerHTML = "Humidity: " + slot.main.humidity + "%"; 
+        container.appendChild(humidty);
+
+        parent.append(container);
+
+    }
 
 }
